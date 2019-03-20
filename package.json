@@ -1,0 +1,25 @@
+{
+  "name": "rke-aws-lambda-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "mocha": "^6.0.2",
+    "chai": "^4.2.0"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha **/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amitrke/rke-aws-lambda-node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amitrke/rke-aws-lambda-node/issues"
+  },
+  "homepage": "https://github.com/amitrke/rke-aws-lambda-node#readme"
+}
