@@ -13,3 +13,26 @@ functions:
           path: hello
           method: get
           cors: true
+  microservice:
+    handler: handler.microservice
+    events:
+      - http:
+          path: db
+          method: get
+          cors: true
+      - http:
+          path: db
+          method: post
+          cors: true
+      - http:
+          path: db
+          method: delete
+          cors: true
+      - http:
+          path: db
+          method: options
+          cors: true
+      - http:
+          path: db
+          method: put
+          cors: true
