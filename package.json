@@ -3,7 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "handler.js",
-  "dependencies": {},
+  "dependencies": {
+    "bluebird": "^3.5.3",
+    "decamelize": "^3.1.1",
+    "faunadb": "^2.6.1",
+    "log4js": "^4.1.0",
+    "serverless-authentication": "^0.6.3",
+    "serverless-authentication-facebook": "^0.6.0",
+    "serverless-authentication-google": "^0.6.0",
+    "serverless-authentication-microsoft": "^0.6.0"
+  },
   "devDependencies": {
     "chai": "^4.2.0",
     "dynamodb-doc": "^1.0.0",
