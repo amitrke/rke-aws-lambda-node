@@ -17,6 +17,8 @@ module.exports.hello = async (event) => {
 };
 
 module.exports.microservice = (event, context, callback) => {
+    //console.log('Received event:', JSON.stringify(event, null, 2));
+
     const done = (err, res) => callback(null, {
         statusCode: err ? '400' : '200',
         body: err ? err.message : JSON.stringify(res),
@@ -49,19 +51,3 @@ module.exports.microservice = (event, context, callback) => {
             done(new Error(`Unsupported method "${event.httpMethod}"`));
     }
 };
-
-const signinHandler = require('./lib/handlers/signinHandler')
-const callbackHandler = require('./lib/handlers/callbackHandler')
-const refreshHandler = require('./lib/handlers/refreshHandler')
-const authorizeHandler = require('./lib/handlers/authorizeHandler')
-const { setupSchemaHandler } = require('./lib/storage/fauna/faunaUser')
-
-module.exports.signin = async (event) => signinHandler(event)
-
-module.exports.callback = async (event) => callbackHandler(event)
-
-module.exports.refresh = async (event) => refreshHandler(event)
-
-module.exports.authorize = async (event) => authorizeHandler(event)
-
-module.exports.schema = (event, context, cb) => setupSchemaHandler(event, cb)
