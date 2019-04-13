@@ -11,20 +11,16 @@ module.exports.hello = async (event) => {
       input: event,
     }),
   };
-
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
 };
 
 module.exports.microservice = (event, context, callback) => {
-    //console.log('Received event:', JSON.stringify(event, null, 2));
-
+    console.log('Received event:', JSON.stringify(event, null, 2));
     const done = (err, res) => callback(null, {
         statusCode: err ? '400' : '200',
         body: err ? err.message : JSON.stringify(res),
         headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin':'*',
+            'Access-Control-Allow-Origin':'*.roorkee.org',
             'Version':'17.10.15.4'
         },
     });
