@@ -34,6 +34,10 @@ functions:
           cors: true
       - http:
           path: db
+          method: options
+          cors: true
+      - http:
+          path: db
           method: post
           cors: true
       - http:
