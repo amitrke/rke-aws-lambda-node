@@ -20,7 +20,7 @@ module.exports.microservice = (event, context, callback) => {
         body: err ? err.message : JSON.stringify(res),
         headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin':'*.roorkee.org',
+            'Access-Control-Allow-Origin':'*',
             'Version':'17.10.15.4'
         },
     });
