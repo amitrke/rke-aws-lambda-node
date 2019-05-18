@@ -8,7 +8,14 @@ jobs:
 
     steps:
       - checkout
-
+      - run:
+          name: Update environment variables
+          command: |
+            echo ${MONGO_CONNECT_STRING}
+            ls -larth
+            cat variables.env
+            sed -i "s/##MONGO_CONNECT_STRING##/${MONGO_CONNECT_STRING}/g" variables.env
+            cat variables.env
       # Download and cache dependencies
       - restore_cache:
           keys:

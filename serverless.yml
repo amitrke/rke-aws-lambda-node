@@ -18,6 +18,13 @@ provider:
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE_PREFIX}*"
 
 functions:
+  mongoms:
+    handler: mongomicrosrv.mongoms
+    events:
+      - http:
+          path: /{model}/{id} # path will be domain.name.com/dev/notes/1
+          method: get
+          cors: true
   hello:
     handler: handler.hello
     events:
@@ -46,10 +53,6 @@ functions:
           cors: true
       - http:
           path: db
-          method: options
-          cors: true
-      - http:
-          path: db
           method: put
           cors: true
 
@@ -71,3 +74,5 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
         TableName: ${self:provider.environment.DYNAMODB_TABLE_PREFIX}_user
+plugins:
+- serverless-offline
