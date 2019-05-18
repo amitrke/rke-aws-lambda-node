@@ -26,7 +26,7 @@ module.exports.mongoms = async (event, context, callback) => {
     
     switch (event.httpMethod) {
         case 'GET':
-            if (event.pathParameters.id && event.pathParameters.model){
+            if (event.pathParameters.id){
                 try{
                     let userResp = await User.findById(event.pathParameters.id);
                     return httpResp(200, userResp);

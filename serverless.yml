@@ -22,7 +22,7 @@ functions:
     handler: mongomicrosrv.mongoms
     events:
       - http:
-          path: /{model}/{id} # path will be domain.name.com/dev/notes/1
+          path: user/{id} # path will be domain.name.com/dev/notes/1
           method: get
           cors: true
   hello:
