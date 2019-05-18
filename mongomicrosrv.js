@@ -2,7 +2,7 @@
 
 require('dotenv').config({ path: './variables.env' });
 const connectToDatabase = require('./db');
-const User = require('./models/User');
+const User = require('./models/user');
 
 module.exports.mongoms = async (event, context, callback) => {
     context.callbackWaitsForEmptyEventLoop = false;
