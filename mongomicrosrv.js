@@ -23,12 +23,23 @@ module.exports.mongoms = async (event, context, callback) => {
     }
 
     await connectToDatabase();
-    
+    console.log(event);
     switch (event.httpMethod) {
         case 'GET':
-            if (event.pathParameters.id){
+            if (event.queryStringParameters.id){
                 try{
-                    let userResp = await User.findById(event.pathParameters.id);
+                    let userResp = await User.findById(event.queryStringParameters.id);
+                    return httpResp(200, userResp);
+                }
+                catch(err) {
+                    return httpResp(500, err);
+                }
+            }
+            else if (event.queryStringParameters.find && event.queryStringParameters.value){
+                try{
+                    let query = {};
+                    query[event.queryStringParameters.find] = event.queryStringParameters.value;
+                    let userResp = await User.find(query);
                     return httpResp(200, userResp);
                 }
                 catch(err) {
