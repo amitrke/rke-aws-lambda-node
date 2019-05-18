@@ -21,6 +21,9 @@ module.exports.microservice = (event, context, callback) => {
         headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin':'*',
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Methods': 'GET, PUT, POST, OPTIONS, DELETE, HEAD',
+            "Access-Control-Allow-Credentials" : true,
             'Version':'17.10.15.4'
         },
     });
@@ -33,7 +36,8 @@ module.exports.microservice = (event, context, callback) => {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin':'*',
                     'Access-Control-Allow-Headers': '*',
-                    'Access-Control-Allow-Methods': '*',
+                    'Access-Control-Allow-Methods': 'GET, PUT, POST, OPTIONS, DELETE, HEAD',
+                    "Access-Control-Allow-Credentials" : true,
                     'Version':'17.10.15.4'
                 },
             });
@@ -73,4 +77,4 @@ module.exports.microservice = (event, context, callback) => {
         default:
             done(new Error(`Unsupported method "${event.httpMethod}"`));
     }
-};
+}; 
