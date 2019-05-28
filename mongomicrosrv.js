@@ -4,7 +4,7 @@ require('dotenv').config({ path: './variables.env' });
 const connectToDatabase = require('./db');
 const User = require('./models/user');
 
-module.exports.mongoms = async (event, context, callback) => {
+module.exports.mongoms = async (event, context) => {
     context.callbackWaitsForEmptyEventLoop = false;
 
     function httpResp(status, data){
@@ -23,7 +23,6 @@ module.exports.mongoms = async (event, context, callback) => {
     }
 
     await connectToDatabase();
-    console.log(event);
     switch (event.httpMethod) {
         case 'GET':
             if (event.queryStringParameters.id){
