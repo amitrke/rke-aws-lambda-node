@@ -46,7 +46,8 @@ module.exports.mongoms = async (event, context) => {
                 }
             }
             else{
-                return httpResp(422, "Incorrect input");
+                let userResp = await User.find({});
+                return httpResp(200, userResp);
             }
             break;
     }
