@@ -52,5 +52,5 @@ module.exports.mongoms = async (event, context) => {
             break;
     }
     
-    return httpResp(200, "Code needs improvement");
+    return httpResp(422, "Code needs improvement");
 };
