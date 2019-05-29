@@ -22,7 +22,23 @@ functions:
     handler: mongomicrosrv.mongoms
     events:
       - http:
-          path: user
+          path: v1/{entity}:{id}
+          method: get
+          cors: true
+      - http:
+          path: v1/{entity}:{id}
+          method: post
+          cors: true
+      - http:
+          path: v1/{entity}
+          method: put
+          cors: true
+      - http:
+          path: v1/{entity}:{id}
+          method: delete
+          cors: true
+      - http:
+          path: v1/{entity}/q/{filter}
           method: get
           cors: true
   hello:

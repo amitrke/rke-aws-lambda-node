@@ -23,6 +23,18 @@ module.exports.mongoms = async (event, context) => {
     }
 
     await connectToDatabase();
+
+    if (['GET','POST','DELETE','PUT'].indexOf(event.httpMethod) === -1 ) return httpResp(422, `HttpMethod ${event.httpMethod} is not implemented`);
+    if (event.pathParameters === undefined || event.pathParameters.entity === undefined) return httpResp(422, 'Path parameter entity not found');
+    try{
+        if (typeof eval(event.pathParameters.entity) !== 'function') return httpResp(422, `Mongoose entity ${event.pathParameters.entity} is not found`);
+    }
+    catch(err){
+        return httpResp(422, `Mongoose entity ${event.pathParameters.entity} is not found`);
+    }
+    
+
+    console.log("Validation complete");
     switch (event.httpMethod) {
         case 'GET':
             if (event.queryStringParameters.id){
