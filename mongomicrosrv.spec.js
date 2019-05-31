@@ -10,7 +10,10 @@ describe('service', () => {
    
     it('should find one user', async () => {
        var event = {
-           queryStringParameters: {id: "53cb6b9b4f4ddef1ad47f943"},
+           pathParameters: {
+              id: "53cb6b9b4f4ddef1ad47f943",
+              entity: "User"
+            },
            httpMethod: "GET"
         }
        var context = {}
@@ -20,26 +23,14 @@ describe('service', () => {
        expect(respBody.email, 'Should have an emailid').to.not.null;
     });
 
-    it('should find all users', async () => {
-        var event = {
-            queryStringParameters: {},
-            httpMethod: "GET"
-         }
-        var context = {}
-        var result = await service.mongoms(event, context);
-        var respBody = JSON.parse(result.body);
-        expect(result.statusCode).to.equal(200);
-        expect(respBody.length, 'Result size should be greater than one').to.gte(1);
-     });
-
      it('find user by email', async () => {
       var event = {
-          queryStringParameters: {
-             find: 'email',
-             value: 'john.doe@yahoo.com'
+          pathParameters: {
+            filter: "{\"email\":\"john.doe@yahoo.com\"}",
+            entity: "User"
           },
           httpMethod: "GET"
-       }
+      }
       var context = {}
       var result = await service.mongoms(event, context);
       var respBody = JSON.parse(result.body);
@@ -49,24 +40,59 @@ describe('service', () => {
 
    it('delete user by id', async () => {
       var event = {
-          queryStringParameters: {
-             id: '53cb6b9b4f4ddef1ad47f943'
+         pathParameters: {
+            id: "53cb6b9b4f4ddef1ad47f943",
+            entity: "User"
           },
           httpMethod: "DELETE"
        }
       var context = {}
       var result = await service.mongoms(event, context);
       var respBody = JSON.parse(result.body);
-      expect(result.statusCode).to.equal(422);
-      /*
+      expect(result.statusCode).to.equal(200);
+      
       event = {
-         queryStringParameters: {id: "53cb6b9b4f4ddef1ad47f943"},
+         pathParameters: {
+            id: "53cb6b9b4f4ddef1ad47f943",
+            entity: "User"
+          },
          httpMethod: "GET"
       }
       var result = await service.mongoms(event, context);
       var respBody = JSON.parse(result.body);
       expect(result.statusCode).to.equal(200);
-      expect(respBody.email).to.be.undefined;
-      */
+      expect(respBody).to.be.null;
+   });
+
+   it('create user', async () => {
+      var event = {
+         pathParameters: {
+            entity: "User"
+         },
+         httpMethod: "PUT",
+         body: "{\"name\": \"Test Name\", \"email\": \"test.name@yahoo.com\"}"
+       }
+      var context = {}
+      var result = await service.mongoms(event, context);
+      var respBody = JSON.parse(result.body);
+      expect(result.statusCode).to.equal(200);
+      expect(respBody.id).is.not.null;
+   });
+
+   it('update user', async () => {
+      var event = {
+         pathParameters: {
+            id: "53cb6b9b4f4ddef1ad47f943",
+            entity: "User"
+         },
+         httpMethod: "POST",
+         body: "{\"name\": \"Test Name\"}"
+       }
+      var context = {}
+      var result = await service.mongoms(event, context);
+      var respBody = JSON.parse(result.body);
+      console.dir(respBody);
+      expect(result.statusCode).to.equal(200);
+      expect(respBody.id).is.not.null;
    });
 })
