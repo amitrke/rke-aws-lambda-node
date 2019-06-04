@@ -7,7 +7,7 @@ module.exports.hello = async (event) => {
   return {
     statusCode: 200,
     body: JSON.stringify({
-      message: 'Roorkee.org moving to lambdas very soon :)',
+      message: 'Roorkee.org moving to lambdas soon :)',
       input: event,
     }),
   };
