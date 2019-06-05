@@ -26,7 +26,7 @@ describe('service', () => {
      it('find user by email', async () => {
       var event = {
           pathParameters: {
-            filter: "{\"email\":\"john.doe@yahoo.com\"}",
+            filter: "{\"social.email\":\"john.doe@gmail.com\"}",
             entity: "User"
           },
           httpMethod: "GET"
@@ -91,7 +91,6 @@ describe('service', () => {
       var context = {}
       var result = await service.mongoms(event, context);
       var respBody = JSON.parse(result.body);
-      console.dir(respBody);
       expect(result.statusCode).to.equal(200);
       expect(respBody.id).is.not.null;
    });
