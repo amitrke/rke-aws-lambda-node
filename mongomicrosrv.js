@@ -50,7 +50,7 @@ module.exports.mongoms = async (event, context) => {
             if (event.pathParameters.id)
                 return await dbOperation(entity, 'findById', event.pathParameters.id);
             else if (event.pathParameters.filter)
-                return await dbOperation(entity, 'find', JSON.parse(event.pathParameters.filter));
+                return await dbOperation(entity, 'find', JSON.parse(decodeURI(event.pathParameters.filter)));
             else
                 return httpResp(422, 'GET request should have id or filter');
         case 'POST':
