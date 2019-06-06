@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-var socialSchema = new mongoose.Schema({ id: 'string', type: 'string', email: 'string', profilePic: 'string'});
+var socialSchema = new mongoose.Schema({ id: 'string', type: 'string', email: 'string', profilePic: 'string'},{ _id : false });
 
 const UserSchema = new mongoose.Schema({
   name: 'string',
