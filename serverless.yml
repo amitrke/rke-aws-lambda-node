@@ -59,5 +59,12 @@ functions:
           path: db
           method: put
           cors: true
+  file:
+    handler: s3files.upload
+    events:
+      - http:
+          path: upload
+          method: post
+          cors: true
 plugins:
 - serverless-offline

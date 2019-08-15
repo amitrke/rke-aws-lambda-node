@@ -14,6 +14,7 @@ jobs:
             ls -larth
             cat variables.env
             sed -i "s~##MONGO##~${MONGO}~g" variables.env
+            cat variables.env
       # Download and cache dependencies
       - restore_cache:
           keys:
