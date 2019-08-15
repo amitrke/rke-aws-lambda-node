@@ -1,5 +1,12 @@
 'use strict'
-require('dotenv').config({ path: './variables.env' });
+const dotEnvRes = require('dotenv').config();
+
+if (result.error) {
+   throw result.error
+}
+  
+console.log(result.parsed)
+
 const connectToDatabase = require('./db');
 const User = require('./models/user');
 const Post = require('./models/post');
