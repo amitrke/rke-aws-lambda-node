@@ -1,11 +1,11 @@
 'use strict'
-const dotEnvRes = require('dotenv').config();
+const dotEnvRes = require('dotenv').config({ path: './variables.env' });
 
-if (result.error) {
-   throw result.error
+if (dotEnvRes.error) {
+   throw dotEnvRes.error
 }
   
-console.log(result.parsed)
+console.log(dotEnvRes.parsed)
 
 const connectToDatabase = require('./db');
 const User = require('./models/user');
