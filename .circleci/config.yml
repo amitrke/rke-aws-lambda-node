@@ -12,9 +12,9 @@ jobs:
           name: Update environment variables
           command: |
             ls -larth
-            cat variables.env
-            sed -i "s~##MONGO##~${MONGO}~g" variables.env
-            cat variables.env
+            cat db.js
+            sed -i "s~##MONGO##~${MONGO}~g" db.js
+            cat db.js
       # Download and cache dependencies
       - restore_cache:
           keys:
