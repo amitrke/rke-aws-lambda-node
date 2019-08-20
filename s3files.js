@@ -1,21 +1,31 @@
 'use strict';
 const AWS = require('aws-sdk');
-var s3 = new AWS.S3( { params: {Bucket: 'www-static.aws.roorkee.org'} });
+var s3 = new AWS.S3( { params: {Bucket: 'www-static.aws.roorkee.org', region: 'us-east-1'}});
 
-module.exports.upload = async (event, context, callback) => {
-    buf = new Buffer(req.body.fileData.replace(/^data:image\/\w+;base64,/, ""),'base64')
+module.exports.upload = async (event) => {
+    let parsedBody = JSON.parse(event.body);
+    let buf = new Buffer(parsedBody.fileData.replace(/^data:image\/\w+;base64,/, ""),'base64')
     var data = {
-        Key: req.body.fileName, 
+        Key: parsedBody.fileName, 
         Body: buf,
         ContentEncoding: 'base64',
         ContentType: 'image/jpeg'
     };
-    s3Bucket.putObject(data, function(err, data){
-        if (err) { 
-            console.log(err);
-            console.log('Error uploading data: ', data); 
-        } else {
-            console.log('succesfully uploaded the image!');
+    
+    try{
+        var resp = await s3.putObject(data).promise();
+        console.log(JSON.stringify(resp));
+        return {
+            statusCode: 200,
+            body: JSON.stringify(resp)
         }
-    });
+    }
+    catch(err){
+        console.log(JSON.stringify(err));
+        return {
+            statusCode: 200,
+            body: JSON.stringify(err)
+        }
+    }
+    
 };
