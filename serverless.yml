@@ -66,5 +66,11 @@ functions:
           path: file
           method: post
           cors: true
+      - http:
+          path: file
+          method: get
+          cors: true
+    
+  
 plugins:
 - serverless-offline
