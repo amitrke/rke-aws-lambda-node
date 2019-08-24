@@ -63,7 +63,7 @@ functions:
     handler: s3files.upload
     events:
       - http:
-          path: upload
+          path: file
           method: post
           cors: true
 plugins:
