@@ -11,7 +11,7 @@ module.exports.upload = async (event) => {
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin':'*',
-                'Access-Control-Allow-Headers': '*',
+                'Access-Control-Allow-Headers': 'userid, env',
                 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, DELETE',
                 "Access-Control-Allow-Credentials" : true,
                 'Version':'17.10.15.4'
