@@ -11,7 +11,7 @@ module.exports.upload = async (event) => {
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin':'*',
-                'Access-Control-Allow-Headers': 'userid, env',
+                'Access-Control-Allow-Headers': '*',
                 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, DELETE',
                 "Access-Control-Allow-Credentials" : true,
                 'Version':'17.10.15.4'
@@ -41,7 +41,7 @@ module.exports.upload = async (event) => {
     }
 
     let getFilesList = async(event) => {
-        var folder = `${event.headers.env}/up/usr/${event.headers.userid}/`;
+        var folder = `${event.pathParameters.env}/up/usr/${event.pathParameters.id}/`;
         console.log(`Folder ${folder}`);
 
         var params = { 

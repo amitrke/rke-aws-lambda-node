@@ -67,7 +67,7 @@ functions:
           method: post
           cors: true
       - http:
-          path: file
+          path: file/{env}/{id}
           method: get
           cors: true
     
